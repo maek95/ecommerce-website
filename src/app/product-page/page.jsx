@@ -9,7 +9,7 @@ export default function productpage() {
   return (
     <div className="min-h-screen w-full relative">
       <Navbar />
-      <main className="bg-green-400 flex flex-col pl-4 pr-4">
+      <main className=" flex flex-col pl-4 pr-4">
         <div>
           <h1 className="font-bebas">product page</h1>
           <header className="bg-white border-solid border-2 border-black">
