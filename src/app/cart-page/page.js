@@ -34,6 +34,7 @@ export default function CartPage() {
           <li key={item.id}>
             {item.name}
             {item.color}
+            {item.img}
           </li>
         ))}
       </ul>
