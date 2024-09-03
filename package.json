@@ -2,6 +2,7 @@
   "name": "ecommerce-website",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -9,10 +10,9 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "ecommerce-website": "file:",
-    "next": "14.2.7",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "next": "14.2.7"
   },
   "devDependencies": {
     "postcss": "^8",
