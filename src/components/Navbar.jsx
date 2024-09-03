@@ -19,16 +19,23 @@ export default function Navbar() {
   };
 
   return (
-    <nav style={navStyles}>
-      <div style={leftContainerStyles}>
-        <RxHamburgerMenu style={iconStyles} onClick={toggleMenu} />
+    <nav style={navStyles} className="bg-white shadow-md border-b">
+      <div style={leftContainerStyles} className="flex items-center">
+        <RxHamburgerMenu
+          style={iconStyles}
+          className="text-2xl text-gray-700 cursor-pointer"
+          onClick={toggleMenu}
+        />
       </div>
-      <div style={brandStyles}>
+      <div style={brandStyles} className="text-xl font-bold text-blue-700">
         <Link href="/" style={{ color: "inherit", textDecoration: "none" }}>
-          E-commerce
+          Micke&Micke
         </Link>
       </div>
-      <div style={rightContainerStyles}>
+      <div
+        style={rightContainerStyles}
+        className="flex items-center gap-4 text-xl text-gray-700"
+      >
         <FiSearch style={iconStyles} />
         <FiMapPin style={iconStyles} />
         <FiUser style={iconStyles} />
@@ -38,20 +45,43 @@ export default function Navbar() {
 
       {/* Burger Menu Content */}
       {isOpen && (
-        <div style={menuStyles}>
-          <ul>
-            <li>
-              <Link href="/home">Kläder</Link>
-            </li>
-            <li>
-              <Link href="/about">Nyheter</Link>
-            </li>
-            <li>
-              <Link href="/services">Skor</Link>
-            </li>
-            <li>
-              <Link href="/contact">Junior</Link>
-            </li>
+        <div
+          style={menuStyles}
+          className="absolute top-14 left-0 w-48 bg-white border rounded-lg shadow-lg p-2"
+        >
+          <ul className="flex flex-col">
+            <ol className="py-2 px-4 hover:bg-gray-100 rounded-md">
+              <Link
+                href="/home"
+                className="block text-blue-700 font-bold hover:underline-none"
+              >
+                Kläder
+              </Link>
+            </ol>
+            <ol className="py-2 px-4 hover:bg-gray-100 rounded-md">
+              <Link
+                href="/about"
+                className="block text-blue-700 font-bold hover:underline-none"
+              >
+                Nyheter
+              </Link>
+            </ol>
+            <ol className="py-2 px-4 hover:bg-gray-100 rounded-md">
+              <Link
+                href="/services"
+                className="block text-blue-700 font-bold hover:underline-none"
+              >
+                Skor
+              </Link>
+            </ol>
+            <ol className="py-2 px-4 hover:bg-gray-100 rounded-md">
+              <Link
+                href="/contact"
+                className="block text-blue-700 font-bold hover:underline-none"
+              >
+                Junior
+              </Link>
+            </ol>
           </ul>
         </div>
       )}
@@ -59,7 +89,7 @@ export default function Navbar() {
   );
 }
 
-// Styling
+// Existing inline styling retained
 const navStyles = {
   display: "flex",
   justifyContent: "space-between",
