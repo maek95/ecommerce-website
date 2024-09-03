@@ -34,7 +34,7 @@ export default function CartPage() {
           <li key={item.id}>
             {item.name}
             {item.color}
-            {item.img}
+            <img src="mock-img.webp" className="w-24"></img>
           </li>
         ))}
       </ul>

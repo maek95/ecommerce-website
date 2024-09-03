@@ -3,35 +3,30 @@
     "id": 1,
     "name": "T-shirt",
     "size": "M",
-    "color": "Blue",
-    "img": "mock-img.webp"
+    "color": "Blue"
   },
   {
     "id": 2,
     "name": "Jeans",
     "size": "32",
-    "color": "Black",
-    "img": "mock-img.webp"
+    "color": "Black"
   },
   {
     "id": 3,
     "name": "Hoodie",
     "size": "L",
-    "color": "Grey",
-    "img": "mock-img.webp"
+    "color": "Grey"
   },
   {
     "id": 4,
     "name": "Jacket",
     "size": "XL",
-    "color": "Green",
-    "img": "mock-img.webp"
+    "color": "Green"
   },
   {
     "id": 5,
     "name": "Sneakers",
     "size": "42",
-    "color": "White",
-    "img": "mock-img.webp"
+    "color": "White"
   }
 ]
