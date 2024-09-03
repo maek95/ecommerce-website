@@ -1,5 +1,6 @@
-//"use client",
-//import React, { useState } from "react";
+"use client";
+import AddToBasket from "@/components/AddToBasket";
+import ProdDescription from "@/components/ProdDescription";
 
 export default function productpage() {
   //const productpage = () => {};
@@ -10,7 +11,7 @@ export default function productpage() {
         <h1 className="text-blue-800 text-center">Placeholder Navbar </h1>
       </nav>
       <div>
-        <h1>product page</h1>
+        <h1 className="font-bebas">product page</h1>
         <header className="bg-white border-solid border-2 border-black">
           <img
             className="h-full max-w-full object-cover"
@@ -20,19 +21,19 @@ export default function productpage() {
         </header>
         <div>
           <div>
-            <p>product name</p>
+            <p>fetch product name by ID</p>
           </div>
           <div>
-            <p>product price</p>
+            <p>fetch product price by ID</p>
           </div>
           <div>
-            <button>add to basket</button>
+            <AddToBasket />
           </div>
           <div>
             <p>product usp</p>
           </div>
           <div>
-            <p>product description accordion</p>
+            <ProdDescription />
           </div>
         </div>
       </div>
