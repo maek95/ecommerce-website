@@ -1,5 +1,6 @@
 import Navbar from "@/components/Navbar";
-import ProductCard from "@/components/ProductCard";
+import ProductCard from "@/components/firstpage-section/ProductCard";
+import ProductCollectionSection from "@/components/firstpage-section/ProductCollectionSection";
 import Image from "next/image";
 
 export default function Home() {
@@ -16,45 +17,10 @@ export default function Home() {
             alt="jack&jones-hero"
           />
         </section>
-        <section className="h-96 flex flex-col gap-4 w-full pl-4 pr-4 box-border">
-          {" "}
-          {/* grid grid-flow-col maintains all three <img> elements visible if they have w-full instead of set width... */}
-          <h2 className="font-bebas p-0 m-0 leading-0">Summer Collection</h2>
-          <div className="h-full flex max-w-full gap-4 overflow-x-scroll flex-nowrap ">
-            {" "}
-            {/* flex-nowrap needed for ProductCards to overflow */}
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
-          </div>
-        </section>
-        <section className="h-96 flex flex-col pt-4 w-full pl-4 pr-4 box-border">
-          {" "}
-          {/* grid grid-flow-col maintains all three <img> elements visible if they have w-full instead of set width... */}
-          <h2 className="font-bebas p-0 m-0 leading-0">Summer Collection</h2>
-          <div className="h-full flex max-w-full gap-4 overflow-x-scroll flex-nowrap ">
-            {" "}
-            {/* flex-nowrap needed for ProductCards to overflow */}
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
-          </div>
-        </section>
-        <section className="h-96 flex flex-col gap-4 w-full pl-4 pr-4 box-border">
-          {" "}
-          {/* grid grid-flow-col maintains all three <img> elements visible if they have w-full instead of set width... */}
-          <h2 className="font-bebas p-0 m-0 leading-0">Summer Collection</h2>
-          <div className="h-full flex max-w-full gap-4 overflow-x-scroll flex-nowrap ">
-            {" "}
-            {/* flex-nowrap needed for ProductCards to overflow */}
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
-          </div>
-        </section>
+        <ProductCollectionSection />
+        <ProductCollectionSection sectionName="custom name"/>
+        <ProductCollectionSection sectionName="micke's clothes"/>
+        
       </main>
     </div>
   );
