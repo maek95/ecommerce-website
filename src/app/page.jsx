@@ -6,7 +6,7 @@ export default function Home() {
   return (
     <div className="min-h-screen w-full">
       <Navbar />
-      <main className="flex flex-col w-full ">
+      <main className="flex flex-col w-full gap-4 pt-4">
         <section className="h-96 pl-4 pr-4 w-full box-border">
           {" "}
           {/* box-border otherwise padding extends the page when calculating w-full */}
@@ -16,7 +16,7 @@ export default function Home() {
             alt="jack&jones-hero"
           />
         </section>
-        <section className="h-96 flex flex-col gap-4 w-full pt-4 pl-4 pr-4 box-border">
+        <section className="h-96 flex flex-col gap-4 w-full pl-4 pr-4 box-border">
           {" "}
           {/* grid grid-flow-col maintains all three <img> elements visible if they have w-full instead of set width... */}
           <h2 className="font-bebas p-0 m-0 leading-0">Summer Collection</h2>
@@ -29,7 +29,7 @@ export default function Home() {
             <ProductCard />
           </div>
         </section>
-        <section className="h-96 flex flex-col gap-4 w-full pt-4 pl-4 pr-4 box-border">
+        <section className="h-96 flex flex-col pt-4 w-full pl-4 pr-4 box-border">
           {" "}
           {/* grid grid-flow-col maintains all three <img> elements visible if they have w-full instead of set width... */}
           <h2 className="font-bebas p-0 m-0 leading-0">Summer Collection</h2>
@@ -42,7 +42,7 @@ export default function Home() {
             <ProductCard />
           </div>
         </section>
-        <section className="h-96 flex flex-col gap-4 w-full pt-4 pl-4 pr-4 box-border">
+        <section className="h-96 flex flex-col gap-4 w-full pl-4 pr-4 box-border">
           {" "}
           {/* grid grid-flow-col maintains all three <img> elements visible if they have w-full instead of set width... */}
           <h2 className="font-bebas p-0 m-0 leading-0">Summer Collection</h2>
