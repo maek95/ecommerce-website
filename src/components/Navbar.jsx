@@ -19,7 +19,7 @@ export default function Navbar() {
   };
 
   return (
-    <nav style={navStyles} className="bg-white shadow-md border-b sticky top-0 left-0 right-0">
+    <nav style={navStyles} className="bg-white shadow-md border-b">
       <div style={leftContainerStyles} className="flex items-center">
         <RxHamburgerMenu
           style={iconStyles}
