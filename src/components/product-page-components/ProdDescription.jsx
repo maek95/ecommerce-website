@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-export default function ProdDescription() {
+export default function ProdDescription({ description }) {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleAccordion = () => {
@@ -17,12 +17,7 @@ export default function ProdDescription() {
       </button>
       {isOpen && (
         <div className="p-4 border border-t-0 border-blue-500 rounded-b bg-white">
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat.
-          </p>
+          <p>{description}</p>
         </div>
       )}
     </div>

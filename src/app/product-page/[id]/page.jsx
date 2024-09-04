@@ -3,8 +3,6 @@ import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import AddToBasket from "@/components/product-page-components/AddToBasket";
 import ProdDescription from "@/components/product-page-components/ProdDescription";
-import ProductName from "@/components/ProductName";
-import ProductPris from "@/components/ProductPris";
 import ProductUsp from "@/components/product-page-components/ProductUsp";
 import { useParams, useRouter } from "next/navigation";
 import { ProductsContext } from "@/context/productsContext";
@@ -24,6 +22,10 @@ export default function ProductPage() {
   );
   console.log(product);
 
+  if (!product) {
+    return <h1>Loading Page...</h1>;
+  }
+
   return (
     <div className="min-h-screen w-full relative">
       <Navbar />
@@ -35,29 +37,39 @@ export default function ProductPage() {
           <div>{productId && <h1>hejhejhej {productId}</h1>}</div>
           {/* dynamic router */}
 
-          <header className="bg-slate-300 ">
+          <header className="h-96 max-w-full object-cover">
+            {/* product image */}
             {product && (
               <img
-                className="h-full max-w-full object-cover"
+                className="h-96 max-w-full object-cover"
                 src={product.images[0]}
-                alt=""
+                alt="Failed loading image"
               />
             )}
+            {/* product image */}
           </header>
+
           <div>
-            {product && <div>name: {product.title}</div>}
-            <div>
-              <ProductPris />
-            </div>
+            {/* Product name */}
+            {product && <h2 className="font-normal">{product.title}</h2>}
+            {/* Product name */}
+
+            {/* Product pris */}
+            <div>{product && <h2>{product.price}kr</h2>}</div>
+            {/* Product pris */}
+
             <div>
               <AddToBasket />
             </div>
             <div>
               <ProductUsp />
             </div>
+
+            {/* Description */}
             <div>
-              <ProdDescription />
+              {product && <ProdDescription description={product.description} />}
             </div>
+            {/* Description */}
           </div>
         </div>
         <footer>
