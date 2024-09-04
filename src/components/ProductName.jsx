@@ -1,3 +1,14 @@
+import { useContext } from "react";
+import { ProductsContext } from "@/context/productsContext";
+
 export default function ProductName() {
-  return <h2>Product name</h2>;
+  const { allProductsArr } = useContext(ProductsContext);
+
+  return (
+    allProductsArr &&
+    allProductsArr.length > 0 &&
+    allProductsArr.map((productObj) => {
+      return <div>{productObj.title} </div>;
+    })
+  );
 }
