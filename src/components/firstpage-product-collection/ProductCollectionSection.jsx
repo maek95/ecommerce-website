@@ -11,7 +11,7 @@ export default function ProductCollectionSection({sectionName = "Placeholder Col
 
   const { allProductsArr } = useContext(ProductsContext);
 
-  console.log("ProductCollectionSection received allProductsArr from productsContext: ", allProductsArr);
+ // console.log("ProductCollectionSection received allProductsArr from productsContext: ", allProductsArr);
   
    
   return (
@@ -19,8 +19,8 @@ export default function ProductCollectionSection({sectionName = "Placeholder Col
       <h2 className="font-bebas p-0 m-0 leading-0">{sectionName}</h2>
       <ProductSlidebar>
         
-        {allProductsArr && allProductsArr.length > 0 && allProductsArr.map((productObj) => {
-          return <ProductCard title={productObj.title} price={productObj.price}/>
+        {allProductsArr && allProductsArr.length > 0 && allProductsArr.map((productObj, index) => {
+          return <ProductCard key={index} title={productObj.title} price={productObj.price}/>
         })}
       </ProductSlidebar>
     </section>

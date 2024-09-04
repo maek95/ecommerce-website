@@ -6,7 +6,7 @@ export async function getAllProducts() {
     }
     const data = await response.json();
     //setMockCart(mockData);
-    console.log(data);
+    // console.log(data); // logging in productsContext later... less spam  
 
     return data; // return fetched data
   } catch (error) {
