@@ -11,7 +11,6 @@ export function ProductsProvider({ children }) {
   useEffect(() => {
     async function fetchAllProducts() {
       const fetchedProducts = await getAllProducts(); // getAllProducts() function in productsFetches.jsx (api folder)
-      const fetchedProducts = await getAllProducts(); // getAllProducts() function in productsFetches.jsx (api folder)
       setAllProductsArr(fetchedProducts);
     }
 
