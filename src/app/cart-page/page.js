@@ -31,22 +31,24 @@ export default function CartPage() {
   }, []);
 
   return (
-    <main className="min-h-screen w-full px-8 box-border">
+    <main className="">
       <Navbar />
-      <h1 className="text-[#0468db] text-3xl">Cart</h1>
-      <ul className="p-0">
-        {mockCart.map((item) => (
-          <div key={item.id} className="list-none flex">
-            {item.images && item.images.length > 0 && (
-              <img src={item.images[0]} alt={item.title} className="w-24" />
-            )}
-            <li className="flex flex-col ml-4">
-              <span>{item.title}</span>
-              <span>{item.price} USD</span>
-            </li>
-          </div>
-        ))}
-      </ul>
+      <div className="px-8 box-border min-h-screen w-full pt-8">
+        <h1 className="text-blue-700 text-xl text-bold">CART</h1>
+        <ul className="p-0">
+          {mockCart.map((item) => (
+            <div key={item.id} className="list-none flex">
+              {item.images && item.images.length > 0 && (
+                <img src={item.images[0]} alt={item.title} className="w-24" />
+              )}
+              <li className="flex flex-col ml-4">
+                <span>{item.title}</span>
+                <span>{item.price} USD</span>
+              </li>
+            </div>
+          ))}
+        </ul>
+      </div>
     </main>
   );
 }
