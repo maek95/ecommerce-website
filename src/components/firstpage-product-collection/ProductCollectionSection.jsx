@@ -20,7 +20,7 @@ export default function ProductCollectionSection({sectionName = "Placeholder Col
       <ProductSlidebar>
         
         {allProductsArr && allProductsArr.length > 0 && allProductsArr.map((productObj, index) => {
-          return <ProductCard key={index} title={productObj.title} price={productObj.price} imgSrc={productObj.images[0]}/>
+          return <ProductCard key={index} productId={productObj.id} title={productObj.title} price={productObj.price} imgSrc={productObj.images[0]}/>
         })}
       </ProductSlidebar>
     </section>
