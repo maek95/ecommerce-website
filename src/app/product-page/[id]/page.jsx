@@ -50,7 +50,7 @@ export default function ProductPage() {
             </div>
           </div>
         </div>
-        <footer className="bg-orange-500 ">
+        <footer>
           <Footer />
         </footer>
       </main>

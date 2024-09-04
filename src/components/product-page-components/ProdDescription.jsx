@@ -11,7 +11,7 @@ export default function ProdDescription() {
     <div className="w-full max-w-md mx-auto">
       <button
         onClick={toggleAccordion}
-        className=" p-4 bg-blue-500 text-white text-left rounded-t hover:bg-blue-700 focus:outline-none"
+        className=" p-4 bg-blue-500 text-white text-left rounded hover:bg-blue-700 focus:outline-none"
       >
         {isOpen ? "Hide Product Description" : "Show Product Description"}
       </button>
