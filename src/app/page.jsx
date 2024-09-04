@@ -1,3 +1,4 @@
+import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import ProductCollectionSection from "@/components/firstpage-product-collection/ProductCollectionSection";
 
@@ -20,6 +21,7 @@ export default function Home() {
         <ProductCollectionSection sectionName="micke's clothes"/>
         
       </main>
+      <Footer/>
     </div>
   );
 }
