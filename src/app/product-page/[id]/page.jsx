@@ -33,10 +33,6 @@ export default function ProductPage() {
         <div>
           <h1 className="font-bebas">product page</h1>
 
-          {/* dynamic router */}
-          <div>{productId && <h1>hejhejhej {productId}</h1>}</div>
-          {/* dynamic router */}
-
           <header className="h-96 max-w-full object-cover">
             {/* product image */}
             {product && (
