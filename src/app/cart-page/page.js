@@ -12,7 +12,7 @@ export default function CartPage() {
   }
 
   useEffect(() => {
-    async function getMockData() {
+    async function getCartProducts() {
       try {
         const response = await fetch(
           "https://api.escuelajs.co/api/v1/products"
@@ -27,7 +27,7 @@ export default function CartPage() {
         console.error("Failed to fetch mockdata:", error);
       }
     }
-    getMockData();
+    getCartProducts();
   }, []);
 
   return (
