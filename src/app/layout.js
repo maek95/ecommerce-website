@@ -1,5 +1,6 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
+import { ProductsProvider } from "@/context/productsContext";
 
 
 export const metadata = {
@@ -10,7 +11,11 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className="m-0 p-0">{children}</body>
+      <body className="m-0 p-0">
+        <ProductsProvider>
+          {children}
+        </ProductsProvider>
+      </body>
     </html>
   );
 }
