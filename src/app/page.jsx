@@ -1,7 +1,5 @@
 import Navbar from "@/components/Navbar";
-import ProductCard from "@/components/firstpage-section/ProductCard";
-import ProductCollectionSection from "@/components/firstpage-section/ProductCollectionSection";
-import Image from "next/image";
+import ProductCollectionSection from "@/components/firstpage-product-collection/ProductCollectionSection";
 
 export default function Home() {
   return (

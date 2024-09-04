@@ -12,14 +12,17 @@ export function ProductsProvider({children}) {
   useEffect(() => {
 
     async function fetchAllProducts() {
-      const fetchedProducts = getAllProducts(); // getAllProducts() function in productsFetches.jsx (api folder)
+      const fetchedProducts = await getAllProducts(); // getAllProducts() function in productsFetches.jsx (api folder)
       setAllProductsArr(fetchedProducts);
     }
 
     fetchAllProducts();
   }, [])
 
-  console.log("context allProductsArr: ", allProductsArr);
+  useEffect(() => {
+
+    console.log("context allProductsArr: ", allProductsArr);
+  }, [allProductsArr])
   
 
   return (
