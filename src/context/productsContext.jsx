@@ -4,6 +4,19 @@ import { createContext, useEffect, useState } from "react";
 
 export const ProductsContext = createContext(null);
 
+// Utility function to clean the URL
+function cleanImageUrl(url) {
+  if (!url) return ''; // Return an empty string if the URL is not provided
+
+  // First, remove any unwanted characters like brackets and quotes
+  let cleanedUrl = url.replace(/[\[\]"']/g, "");
+
+  // Decode the URL if it contains encoded characters (e.g., %22)
+  cleanedUrl = decodeURIComponent(cleanedUrl);
+
+  return cleanedUrl;
+}
+
 export function ProductsProvider({ children }) {
   const [allProductsArr, setAllProductsArr] = useState([]);
   const [cartProductsArr, setCartProductsArr] = useState([]);
@@ -11,7 +24,15 @@ export function ProductsProvider({ children }) {
   useEffect(() => {
     async function fetchAllProducts() {
       const fetchedProducts = await getAllProducts(); // getAllProducts() function in productsFetches.jsx (api folder)
-      setAllProductsArr(fetchedProducts);
+
+      const cleanedProducts = fetchedProducts.map((product) => (
+        {
+        ...product, 
+        images: product.images.map(cleanImageUrl) // Remove unwanted characters surrounding the image source link (this api surround the image link with weird characters...)
+      }
+      ))
+
+      setAllProductsArr(cleanedProducts);
     }
 
     fetchAllProducts();
@@ -31,6 +52,8 @@ export function ProductsProvider({ children }) {
   useEffect(() => {
 
     console.log("context allProductsArr: ", allProductsArr);
+
+   
   }, [allProductsArr])
 
   return (
