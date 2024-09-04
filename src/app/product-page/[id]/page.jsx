@@ -3,20 +3,26 @@ import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import AddToBasket from "@/components/product-page-components/AddToBasket";
 import ProdDescription from "@/components/product-page-components/ProdDescription";
-import ProductImage from "@/components/product-page-components/ProductImage";
 import ProductName from "@/components/ProductName";
 import ProductPris from "@/components/ProductPris";
 import ProductUsp from "@/components/product-page-components/ProductUsp";
 import { useParams, useRouter } from "next/navigation";
+import { ProductsContext } from "@/context/productsContext";
+import { useContext } from "react";
 
 export default function ProductPage() {
   const params = useParams();
   const productId = params.id;
   const router = useRouter();
-
+  const { allProductsArr } = useContext(ProductsContext);
   const handleNavigation = () => {
     router.back();
   };
+
+  const product = allProductsArr.find(
+    (productObj) => productObj.id == productId
+  );
+  console.log(product);
 
   return (
     <div className="min-h-screen w-full relative">
@@ -30,12 +36,16 @@ export default function ProductPage() {
           {/* dynamic router */}
 
           <header className="bg-slate-300 ">
-            <ProductImage />
+            {product && (
+              <img
+                className="h-full max-w-full object-cover"
+                src={product.images[0]}
+                alt=""
+              />
+            )}
           </header>
           <div>
-            <div>
-              <ProductName />
-            </div>
+            {product && <div>name: {product.title}</div>}
             <div>
               <ProductPris />
             </div>
