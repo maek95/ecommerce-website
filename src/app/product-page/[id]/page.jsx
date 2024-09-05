@@ -55,7 +55,7 @@ export default function ProductPage() {
             {/* Product pris */}
 
             <div>
-              <AddToBasket />
+              <AddToBasket product={product} />
             </div>
             <div>
               <ProductUsp />

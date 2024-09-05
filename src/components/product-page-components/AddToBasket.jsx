@@ -1,11 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { ProductsContext } from "@/context/productsContext";
 
-export default function AddToBasket() {
+export default function AddToBasket({ product }) {
   const [added, setAdded] = useState(false);
+  const { addToCart } = useContext(ProductsContext);
 
   const handleClick = () => {
-    // Här kan du lägga till logik för att lägga till produkten i kundkorgen
+    addToCart(product);
     setAdded(true);
+    console.log("added product to cart");
+    console.log(product);
 
     // Eventuell logik för att hantera kundkorgen, t.ex.:
     // addToCart(productId, quantity);
