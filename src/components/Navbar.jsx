@@ -28,7 +28,7 @@ export default function Navbar() {
   };
 
   return (
-    <div>
+    <>
       <nav
         style={navStyles}
         className="bg-white shadow-md border-b sticky top-0 left-0 right-0"
@@ -123,7 +123,7 @@ export default function Navbar() {
           </div>
         </div>
       )}
-    </div>
+    </>
   );
 }
 
