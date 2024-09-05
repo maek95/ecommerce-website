@@ -1,7 +1,7 @@
 "use client";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
-import AddToBasket from "@/components/product-page-components/AddToBasket";
+import AddToCartBtn from "@/components/product-page-components/AddToCartBtn";
 import ProdDescription from "@/components/product-page-components/ProdDescription";
 import ProductUsp from "@/components/product-page-components/ProductUsp";
 import { useParams, useRouter } from "next/navigation";
@@ -61,7 +61,7 @@ export default function ProductPage() {
             {/* Product pris */}
 
             <div>
-              <AddToBasket product={product} />
+              <AddToCartBtn product={product} />
             </div>
             <div>
               <ProductUsp />
