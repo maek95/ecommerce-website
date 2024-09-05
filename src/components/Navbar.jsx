@@ -13,79 +13,115 @@ import {
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isPopupVisible, setPopupVisible] = useState(false);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
 
-  return (
-    <nav style={navStyles} className="bg-white shadow-md border-b sticky top-0 left-0 right-0">
-      <div style={leftContainerStyles} className="flex items-center">
-        <RxHamburgerMenu
-          style={iconStyles}
-          className="text-2xl text-gray-700 cursor-pointer"
-          onClick={toggleMenu}
-        />
-      </div>
-      <div style={brandStyles} className="text-xl font-bold text-blue-700">
-        <Link href="/" style={{ color: "inherit", textDecoration: "none" }}>
-          Micke&Micke
-        </Link>
-      </div>
-      <div
-        style={rightContainerStyles}
-        className="flex items-center gap-4 text-xl text-gray-700"
-      >
-        <FiSearch style={iconStyles} />
-        <FiMapPin style={iconStyles} />
-        <FiUser style={iconStyles} />
-        <FiHeart style={iconStyles} />
-        <FiShoppingBag style={iconStyles} />
-      </div>
+  const handleLinkClick = () => {
+    setPopupVisible(true);
+  };
 
-      {/* Burger Menu Content */}
-      {isOpen && (
+  const closePopup = () => {
+    setPopupVisible(false);
+  };
+
+  return (
+    <div>
+      <nav
+        style={navStyles}
+        className="bg-white shadow-md border-b sticky top-0 left-0 right-0"
+      >
+        <div style={leftContainerStyles} className="flex items-center">
+          <RxHamburgerMenu
+            style={iconStyles}
+            className="text-2xl text-gray-700 cursor-pointer"
+            onClick={toggleMenu}
+          />
+        </div>
+        <div style={brandStyles} className="text-xl font-bold text-blue-700">
+          <Link href="/" style={{ color: "inherit", textDecoration: "none" }}>
+            Micke&Micke
+          </Link>
+        </div>
         <div
-          style={menuStyles}
-          className="absolute top-14 left-0 w-48 bg-white border rounded-lg shadow-lg p-2"
+          style={rightContainerStyles}
+          className="flex items-center gap-4 text-xl text-gray-700"
         >
-          <ul className="flex flex-col">
-            <ol className="py-2 px-4 hover:bg-gray-100 rounded-md">
-              <Link
-                href="/home"
-                className="block text-blue-700 font-bold hover:underline-none"
-              >
-                Kläder
-              </Link>
-            </ol>
-            <ol className="py-2 px-4 hover:bg-gray-100 rounded-md">
-              <Link
-                href="/about"
-                className="block text-blue-700 font-bold hover:underline-none"
-              >
-                Nyheter
-              </Link>
-            </ol>
-            <ol className="py-2 px-4 hover:bg-gray-100 rounded-md">
-              <Link
-                href="/services"
-                className="block text-blue-700 font-bold hover:underline-none"
-              >
-                Skor
-              </Link>
-            </ol>
-            <ol className="py-2 px-4 hover:bg-gray-100 rounded-md">
-              <Link
-                href="/contact"
-                className="block text-blue-700 font-bold hover:underline-none"
-              >
-                Junior
-              </Link>
-            </ol>
-          </ul>
+          <FiSearch style={iconStyles} />
+          <FiMapPin style={iconStyles} />
+          <FiUser style={iconStyles} />
+          <FiHeart style={iconStyles} />
+          <FiShoppingBag style={iconStyles} />
+        </div>
+
+        {/* Burger Menu Content */}
+        {isOpen && (
+          <div
+            style={menuStyles}
+            className="absolute top-14 left-0 w-48 bg-white border rounded-lg shadow-lg p-2"
+          >
+            <ul className="flex flex-col">
+              <ol className="py-2 px-4 hover:bg-gray-100 rounded-md">
+                <button
+                  onClick={handleLinkClick}
+                  className="block text-blue-700 font-bold hover:underline-none"
+                >
+                  Kläder
+                </button>
+              </ol>
+              <ol className="py-2 px-4 hover:bg-gray-100 rounded-md">
+                <button
+                  onClick={handleLinkClick}
+                  className="block text-blue-700 font-bold hover:underline-none"
+                >
+                  Nyheter
+                </button>
+              </ol>
+              <ol className="py-2 px-4 hover:bg-gray-100 rounded-md">
+                <button
+                  onClick={handleLinkClick}
+                  className="block text-blue-700 font-bold hover:underline-none"
+                >
+                  Skor
+                </button>
+              </ol>
+              <ol className="py-2 px-4 hover:bg-gray-100 rounded-md">
+                <button
+                  onClick={handleLinkClick}
+                  className="block text-blue-700 font-bold hover:underline-none"
+                >
+                  Junior
+                </button>
+              </ol>
+            </ul>
+          </div>
+        )}
+      </nav>
+
+      {/* Popup Modal */}
+      {isPopupVisible && (
+        <div
+          className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm flex items-center justify-center z-50"
+          onClick={closePopup}
+        >
+          <div
+            className="bg-white p-6 rounded-lg shadow-lg transform scale-0 animate-grow"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <h2 className="text-lg font-bold">Product Details</h2>
+            <p>Pop up</p>
+            <button
+              onClick={closePopup}
+              className="mt-4 bg-red-500 text-white px-4 py-2 rounded"
+            >
+              Close
+            </button>
+          </div>
         </div>
       )}
-    </nav>
+    </div>
   );
 }
 
