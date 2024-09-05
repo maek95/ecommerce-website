@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
+import PopUpCard from "@/components/PopUpCard";
 
 export default function TestNavPage() {
   return (
@@ -12,7 +13,9 @@ export default function TestNavPage() {
         {/* Your page content goes here */}
         <div className="h-[100vh]"></div>
       </main>
+      <PopUpCard/>
       <Footer />
     </div>
   );
 }
+ 
