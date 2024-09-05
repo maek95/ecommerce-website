@@ -13,6 +13,14 @@ export default function CartPage() {
     return <div>Your cart is empty</div>;
   }
 
+  // Beräknar antalet varor i kundkorgen
+  const totalItems = cartProductsArr.length;
+
+  // Beräknar den totala summan
+  const subTotal = cartProductsArr.reduce((total, product) => {
+    return total + product.price;
+  }, 0);
+
   return (
     <div className="min-h-screen w-full">
       <Navbar />
@@ -42,7 +50,7 @@ export default function CartPage() {
                   <div className="flex flex-col items-end">
                     <button
                       onClick={() => removeFromCart(product.id)}
-                      className="flex bg-transparent border-none text-xl"
+                      className="flex bg-transparent border-none text-xl hover:cursor-pointer"
                     >
                       <RxCross2 />
                     </button>
@@ -55,7 +63,12 @@ export default function CartPage() {
         </ul>
         <div>
           <h2 className="text-base">Order summary</h2>
-          <span>(antal) items</span>
+          <div className="flex flex-col bg-gray-100 py-4 px-2">
+            <span>{totalItems} items</span>
+            <span>Subtotal: {subTotal}&nbsp;kr</span>
+          </div>
+          <div>
+          </div>
         </div>
       </main>
       <Footer />
