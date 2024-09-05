@@ -7,7 +7,7 @@ export default function Home() {
     <div className="min-h-screen w-full">
       <Navbar />
       <main className="flex flex-col w-full gap-4 pt-4">
-        <section className="h-96 pl-4 pr-4 w-full box-border">
+        <section className="flex h-96 pl-4 pr-4 w-full box-border lg:justify-center">
           {" "}
           {/* box-border otherwise padding extends the page when calculating w-full */}
           <img

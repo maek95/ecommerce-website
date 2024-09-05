@@ -14,6 +14,7 @@ export default function ProductPage() {
   const params = useParams();
   const productId = params.id;
   const router = useRouter();
+  
   const { allProductsArr } = useContext(ProductsContext);
   const handleNavigation = () => {
     router.back();
