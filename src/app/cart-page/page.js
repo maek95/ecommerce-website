@@ -1,13 +1,13 @@
 "use client";
 
 import { useContext } from "react";
-import Navbar from "@/components/Navbar";
 import { ProductsContext } from "@/context/productsContext";
-import Footer from "@/components/Footer";
 import { RxCross2 } from "react-icons/rx";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
 export default function CartPage() {
-  const { cartProductsArr } = useContext(ProductsContext);
+  const { cartProductsArr, removeFromCart } = useContext(ProductsContext);
 
   if (cartProductsArr.length === 0) {
     return <div>Your cart is empty</div>;
@@ -26,6 +26,11 @@ export default function CartPage() {
                   src={product.images[0]}
                   alt={product.title}
                   className="w-24 h-24 object-cover mr-4"
+                  onError={(e) => {
+                    // Prevent infinite loops if the fallback image fails too
+                    e.target.onerror = null; // Remove the error handler after first execution
+                    e.target.src = product.category.image; // category image does not need "cleaning"
+                  }}
                 />
                 <div className="flex justify-between w-full">
                   <div className="flex flex-col">
@@ -35,7 +40,10 @@ export default function CartPage() {
                     </span>
                   </div>
                   <div className="flex flex-col items-end">
-                    <button className="flex bg-transparent border-none text-xl">
+                    <button
+                      onClick={() => removeFromCart(product.id)}
+                      className="flex bg-transparent border-none text-xl"
+                    >
                       <RxCross2 />
                     </button>
                     <span className="pr-6 pt-2">{product.price}&nbsp;kr</span>
@@ -45,6 +53,10 @@ export default function CartPage() {
             </li>
           ))}
         </ul>
+        <div>
+          <h2 className="text-base">Order summary</h2>
+          <span>(antal) items</span>
+        </div>
       </main>
       <Footer />
     </div>
