@@ -12,7 +12,7 @@ export default function ProductPage() {
   const params = useParams();
   const productId = params.id;
   const router = useRouter();
-  
+
   const { allProductsArr } = useContext(ProductsContext);
   const handleNavigation = () => {
     router.back();
@@ -69,10 +69,8 @@ export default function ProductPage() {
             {/* Description */}
           </div>
         </div>
-        <footer>
-          <Footer />
-        </footer>
       </main>
+      <Footer />
     </div>
   );
 }
