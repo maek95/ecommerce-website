@@ -19,7 +19,7 @@ export default function ProductCollectionSection({sectionName = "Placeholder Col
       <h2 className="font-bebas p-0 m-0 leading-0">{sectionName}</h2>
       <ProductSlidebar>      
         {categorizedProductsArr && categorizedProductsArr.length > 0 && categorizedProductsArr.map((productObj, index) => {
-          return <ProductCard key={index} productId={productObj.id} title={productObj.title} price={productObj.price} imgSrc={productObj.images[0]}/>
+          return <ProductCard key={index} productId={productObj.id} title={productObj.title} price={productObj.price} imgSrc={productObj.images[0]} productObj={productObj}/>
         })}
         
       </ProductSlidebar>

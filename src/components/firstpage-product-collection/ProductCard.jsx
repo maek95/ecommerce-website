@@ -1,11 +1,11 @@
-/* import { FaShopingCart } from "react-icons/FontAwesome" */
+"use client"
+import { ProductsContext } from "@/context/productsContext";
 import Link from "next/link";
+import { useContext } from "react";
 import { FaShoppingBasket } from "react-icons/fa";
 
-
-
-
-export default function ProductCard({title = "No Title", price = 0, imgSrc = "https://images.jackjones.com/media/0d4k0bhx/suits-dayz35-carousel-3-sv-se.jpg?v=60140033-f495-450b-8155-7c2f21c65e0f&format=webp&width=360&quality=80&key=3-2-1", productId}) {
+// TODO: remove all props instead of productObj ... extract props from productObj instead...
+export default function ProductCard({title = "No Title", price = 0, imgSrc = "https://images.jackjones.com/media/0d4k0bhx/suits-dayz35-carousel-3-sv-se.jpg?v=60140033-f495-450b-8155-7c2f21c65e0f&format=webp&width=360&quality=80&key=3-2-1", productId, productObj}) {
 
   if (!productId) {
     return (
@@ -14,6 +14,8 @@ export default function ProductCard({title = "No Title", price = 0, imgSrc = "ht
       </div>
     )
   }
+
+  const { addToCart } = useContext(ProductsContext);
 
   return (
     <div className="h-full w-36 flex-shrink-0  flex flex-col gap-4">
@@ -26,14 +28,16 @@ export default function ProductCard({title = "No Title", price = 0, imgSrc = "ht
           onError={(e) => {
             // Prevent infinite loops if the fallback image fails too
             e.target.onerror = null; // Remove the error handler after first execution
-            e.target.src = "https://images.jackjones.com/12263083/4573159/001/jackjones-plussizeteddyjacket-black.png?v=681cb536087b86d48a22e75070fb4bf3&format=webp&width=1280&quality=90&key=25-0-3";
+            e.target.src = productObj.category.image; // category image does not need "cleaning"
           }}
         />{" "}
       </Link>
       <div className="h-1/4 w-full flex flex-col text-sm"> {/*  gap-1 not needed due to built-in lineheight */}
         <div className="flex justify-between w-full items-center">
           <p className="p-0 m-0 w-3/4 break-words truncate">{title}</p>
-          <FaShoppingBasket/>
+          <FaShoppingBasket onClick={() => {
+            addToCart(productObj);
+          }}/>
         </div>
         <p className="font-bold p-0 m-0 ">{price}</p>
         
