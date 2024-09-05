@@ -23,6 +23,11 @@ export default function ProductCard({title = "No Title", price = 0, imgSrc = "ht
           className="h-full object-cover w-full "
           src={`${imgSrc}`}
           alt="imgSrc failed"
+          onError={(e) => {
+            // Prevent infinite loops if the fallback image fails too
+            e.target.onerror = null; // Remove the error handler after first execution
+            e.target.src = "https://images.jackjones.com/12263083/4573159/001/jackjones-plussizeteddyjacket-black.png?v=681cb536087b86d48a22e75070fb4bf3&format=webp&width=1280&quality=90&key=25-0-3";
+          }}
         />{" "}
       </Link>
       <div className="h-1/4 w-full flex flex-col text-sm"> {/*  gap-1 not needed due to built-in lineheight */}

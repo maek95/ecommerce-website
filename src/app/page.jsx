@@ -1,8 +1,13 @@
+"use client";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import ProductCollectionSection from "@/components/firstpage-product-collection/ProductCollectionSection";
+import { ProductsContext } from "@/context/productsContext";
+import { useContext } from "react";
 
 export default function Home() {
+  const { categoryProductsArr } = useContext(ProductsContext);
+
   return (
     <div className="min-h-screen w-full">
       <Navbar />
@@ -16,12 +21,24 @@ export default function Home() {
             alt="jack&jones-hero"
           />
         </section>
-        <ProductCollectionSection />
+
+        {/* maybe better to have a set amount of categories? */}
+        {categoryProductsArr &&
+          categoryProductsArr.map((categorizedProducts) => {
+            console.log("category: ", categorizedProducts);
+            return (
+              <ProductCollectionSection
+                key={categorizedProducts.categoryId} // Add a unique key for each section
+                sectionName={categorizedProducts.categoryName}
+                categorizedProductsArr={categorizedProducts.products}
+              />
+            );
+          })}
+        {/*  <ProductCollectionSection />
         <ProductCollectionSection sectionName="custom name"/>
-        <ProductCollectionSection sectionName="micke's clothes"/>
-        
+        <ProductCollectionSection sectionName="micke's clothes"/> */}
       </main>
-      <Footer/>
+      <Footer />
     </div>
   );
 }

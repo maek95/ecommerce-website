@@ -4,30 +4,13 @@ import { createContext, useEffect, useState } from "react";
 
 export const ProductsContext = createContext(null);
 
-// Utility function to clean the URL
-function cleanImageUrl(url) {
-  if (!url) return ""; // Return an empty string if the URL is not provided
-
-  // First, remove any unwanted characters like brackets and quotes
-  let cleanedUrl = url.replace(/[\[\]"']/g, "");
-
-  // Decode the URL if it contains encoded characters (e.g., %22)
-  cleanedUrl = decodeURIComponent(cleanedUrl);
-
-  return cleanedUrl;
-}
-
 export function ProductsProvider({ children }) {
   const [allProductsArr, setAllProductsArr] = useState([]);
   const [cartProductsArr, setCartProductsArr] = useState([]);
+  const [categoryProductsArr, setCategoryProductsArr] = useState([]);
+
 
   useEffect(() => {
-    // hämta varukorgen från localStorage
-    const storedCart = localStorage.getItem("cart");
-    if (storedCart) {
-      setCartProductsArr(JSON.parse(storedCart));
-    }
-
     async function fetchAllProducts() {
       const fetchedProducts = await getAllProducts(); // getAllProducts() function in productsFetches.jsx (api folder)
 
@@ -41,6 +24,24 @@ export function ProductsProvider({ children }) {
 
     fetchAllProducts();
   }, []);
+
+  useEffect(() => {
+    // hämta varukorgen från localStorage
+    const storedCart = localStorage.getItem("cart");
+    if (storedCart) {
+      setCartProductsArr(JSON.parse(storedCart));
+    }
+
+  }, [])
+
+  useEffect(() => {
+
+    if (allProductsArr.length > 0) {
+      const productCategories = groupProductsByCategory(allProductsArr);
+      setCategoryProductsArr(productCategories);
+    }
+
+  }, [allProductsArr])
 
   const addToCart = (product) => {
     setCartProductsArr((prevCartProducts) => {
@@ -67,11 +68,60 @@ export function ProductsProvider({ children }) {
     console.log("context allProductsArr: ", allProductsArr);
   }, [allProductsArr]);
 
+  useEffect(() => {
+    console.log("context categoryProductsArr: ", categoryProductsArr);
+  }, [categoryProductsArr]);
+
+
   return (
     <ProductsContext.Provider
-      value={{ allProductsArr, cartProductsArr, addToCart, removeFromCart }}
+      value={{ allProductsArr, cartProductsArr, addToCart, removeFromCart, categoryProductsArr }}
     >
       {children}
     </ProductsContext.Provider>
   );
 }
+
+// Utility function to clean the URL
+function cleanImageUrl(url) {
+  if (!url) return ""; // Return an empty string if the URL is not provided
+
+  // First, remove any unwanted characters like brackets and quotes
+  let cleanedUrl = url.replace(/[\[\]"']/g, "");
+
+  // Decode the URL if it contains encoded characters (e.g., %22)
+  cleanedUrl = decodeURIComponent(cleanedUrl);
+
+  return cleanedUrl;
+}
+
+// sort products into categories, sorting them into category arrays 1, 2, 3...
+// category name (for display) can be extracted from the product objects.
+function groupProductsByCategory(products) {
+  const productCategories = [];
+
+  products.forEach(product => {
+
+    const categoryId = product.category.id;
+    const categoryName = product.category.name;
+
+    let category = productCategories.find(category => category.categoryId == categoryId);
+ 
+    if (!category) {
+      // if category doesnt exist we will create it
+      category = { 
+        categoryId,
+        categoryName,
+        products: [] // initalize with an empty array
+      }
+      productCategories.push(category); // push new category to groupedProducts array
+    }
+
+    // now that the category exists we can push in the product 
+    category.products.push(product)
+  });
+
+  return productCategories;
+  
+}
+
