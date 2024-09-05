@@ -12,3 +12,22 @@
   margin-bottom: 10px;
   border-bottom: 1px solid rgb(226, 226, 226);
 }
+
+/* keyframes to control the intermediate steps in a CSS animation sequence...!
+Kinda unnecessary now that we only have a start and finish step, but useful if we wouldve had multiple steps.
+*/
+@keyframes impact {
+  0% {
+    transform: scale(3); /* start at 3 times the size  */
+  }
+  /* 50% { 
+    transform: scale(3); 
+  } */
+  100% {
+    transform: scale(1); /* Scale back to normal size to the nd */
+  }
+}
+
+.animate-impact {
+  animation: impact 0.5s ease-in-out; /* 0.5 seconds animation */
+}

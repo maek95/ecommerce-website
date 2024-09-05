@@ -1,7 +1,7 @@
 "use client"
 import { ProductsContext } from "@/context/productsContext";
 import Link from "next/link";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { FaShoppingBasket } from "react-icons/fa";
 
 // TODO: remove all props instead of productObj ... extract props from productObj instead...
@@ -15,7 +15,18 @@ export default function ProductCard({title = "No Title", price = 0, imgSrc = "ht
     )
   }
 
+  const [isCartClicked, setIsCartClicked] = useState(false);
   const { addToCart } = useContext(ProductsContext);
+
+  function handleClickCart() {
+
+    addToCart(productObj);
+    setIsCartClicked(true); // change to count if add multiple times?
+
+    // false again, will be used to make an "impact" effect
+    setTimeout(() => setIsCartClicked(false), 500);
+  
+  }
 
   return (
     <div className="h-full w-36 flex-shrink-0  flex flex-col gap-4">
@@ -35,9 +46,7 @@ export default function ProductCard({title = "No Title", price = 0, imgSrc = "ht
       <div className="h-1/4 w-full flex flex-col text-sm"> {/*  gap-1 not needed due to built-in lineheight */}
         <div className="flex justify-between w-full items-center">
           <p className="p-0 m-0 w-3/4 break-words truncate">{title}</p>
-          <FaShoppingBasket onClick={() => {
-            addToCart(productObj);
-          }}/>
+          <FaShoppingBasket className={`${isCartClicked ? "animate-impact" : ""}`} onClick={handleClickCart}/>
         </div>
         <p className="font-bold p-0 m-0 ">{price}</p>
         
