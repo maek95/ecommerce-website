@@ -23,17 +23,23 @@ export default function Home() {
         </section>
 
         {/* maybe better to have a set amount of categories? */}
-        {categoryProductsArr &&
-          categoryProductsArr.map((categorizedProducts) => {
-            console.log("category: ", categorizedProducts);
-            return (
-              <ProductCollectionSection
-                key={categorizedProducts.categoryId} // Add a unique key for each section
-                sectionName={categorizedProducts.categoryName}
-                categorizedProductsArr={categorizedProducts.products}
-              />
-            );
-          })}
+        <section className="h-96">
+
+          {categoryProductsArr && categoryProductsArr.length > 0 ? 
+            (categoryProductsArr.map((categorizedProducts) => {
+              console.log("category: ", categorizedProducts);
+              return (
+                <ProductCollectionSection
+                  key={categorizedProducts.categoryId} // Add a unique key for each section
+                  sectionName={categorizedProducts.categoryName}
+                  categorizedProductsArr={categorizedProducts.products}
+                />
+              );
+            }) ): (
+            <div className="w-full pl-4 pr-4">
+              Loading Category... {/* TODO: fix skeleton loader? */}
+            </div>)}
+        </section>
         {/*  <ProductCollectionSection />
         <ProductCollectionSection sectionName="custom name"/>
         <ProductCollectionSection sectionName="micke's clothes"/> */}
