@@ -23,7 +23,7 @@ export default function Home() {
         </section>
 
         {/* maybe better to have a set amount of categories? */}
-        <section className="h-96">
+        <section className="min-h-96">
 
           {categoryProductsArr && categoryProductsArr.length > 0 ? 
             (categoryProductsArr.map((categorizedProducts) => {
