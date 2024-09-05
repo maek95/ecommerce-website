@@ -53,7 +53,9 @@ export default function Navbar() {
           <FiMapPin style={iconStyles} />
           <FiUser style={iconStyles} />
           <FiHeart style={iconStyles} />
-          <FiShoppingBag style={iconStyles} />
+          <Link href={"/cart-page"}>
+            <FiShoppingBag style={iconStyles} />
+          </Link>
         </div>
 
         {/* Burger Menu Content */}
