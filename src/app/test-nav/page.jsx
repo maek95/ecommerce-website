@@ -13,8 +13,9 @@ export default function TestNavPage() {
         {/* Your page content goes here */}
         <div className="h-[100vh]"></div>
       </main>
-      <PopUpCard />
+      <PopUpCard/>
       <Footer />
     </div>
   );
 }
+ 
