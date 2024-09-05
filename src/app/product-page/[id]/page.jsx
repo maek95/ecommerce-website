@@ -48,11 +48,11 @@ export default function ProductPage() {
 
           <div>
             {/* Product name */}
-            {product && <h2 className="font-normal">{product.title}</h2>}
+            <h2 className="font-normal">{product.title}</h2>
             {/* Product name */}
 
             {/* Product pris */}
-            <div>{product && <h2>{product.price}kr</h2>}</div>
+            <h2>{product.price}kr</h2>
             {/* Product pris */}
 
             <div>
@@ -64,7 +64,7 @@ export default function ProductPage() {
 
             {/* Description */}
             <div>
-              {product && <ProdDescription description={product.description} />}
+              <ProdDescription description={product.description} />
             </div>
             {/* Description */}
           </div>
