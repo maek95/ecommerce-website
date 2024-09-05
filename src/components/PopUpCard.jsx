@@ -32,7 +32,7 @@ export default function PopUpCard() {
             onClick={(e) => e.stopPropagation()}
           >
             <h2 className="text-lg font-bold">Product Title</h2>
-            <p>Product details go here...</p>
+            <p>Product details...</p>
             <button
               onClick={closePopup}
               className="mt-4 bg-red-500 text-white px-4 py-2 rounded"
