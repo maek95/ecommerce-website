@@ -1,7 +1,7 @@
-import React, { useState, useContext } from "react";
+import { useState, useContext } from "react";
 import { ProductsContext } from "@/context/productsContext";
 
-export default function AddToBasket({ product }) {
+export default function AddToCartBtn({ product }) {
   const [added, setAdded] = useState(false);
   const { addToCart } = useContext(ProductsContext);
 
