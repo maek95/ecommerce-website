@@ -41,6 +41,11 @@ export default function ProductPage() {
                 className="h-96 max-w-full object-cover"
                 src={product.images[0]}
                 alt="Failed loading image"
+                onError={(e) => {
+                  // Prevent infinite loops if the fallback image fails too
+                  e.target.onerror = null; // Remove the error handler after first execution
+                  e.target.src = product.category.image;
+                }}
               />
             )}
             {/* product image */}
