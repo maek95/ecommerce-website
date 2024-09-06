@@ -4,8 +4,8 @@ import Link from "next/link";
 import { useContext, useState } from "react";
 import { FaShoppingBasket } from "react-icons/fa";
 
-// TODO: remove all props instead of productObj ... extract props from productObj instead...
-export default function ProductCard({title = "No Title", price = 0, imgSrc = "https://images.jackjones.com/media/0d4k0bhx/suits-dayz35-carousel-3-sv-se.jpg?v=60140033-f495-450b-8155-7c2f21c65e0f&format=webp&width=360&quality=80&key=3-2-1", productId, productObj}) {
+// TODO: remove all props instead of product ... extract props from product instead...?
+export default function ProductCard({title = "No Title", price = 0, imgSrc = "https://images.jackjones.com/media/0d4k0bhx/suits-dayz35-carousel-3-sv-se.jpg?v=60140033-f495-450b-8155-7c2f21c65e0f&format=webp&width=360&quality=80&key=3-2-1", productId, product}) {
 
   if (!productId) {
     return (
@@ -15,12 +15,13 @@ export default function ProductCard({title = "No Title", price = 0, imgSrc = "ht
     )
   }
 
+
   const [isCartClicked, setIsCartClicked] = useState(false);
   const { addToCart } = useContext(ProductsContext);
 
   function handleClickCart() {
 
-    addToCart(productObj);
+    addToCart(product);
     setIsCartClicked(true); // change to count if add multiple times?
 
     // false again, will be used to make an "impact" effect
@@ -37,9 +38,14 @@ export default function ProductCard({title = "No Title", price = 0, imgSrc = "ht
           src={`${imgSrc}`}
           alt="imgSrc failed"
           onError={(e) => {
-            // Prevent infinite loops if the fallback image fails too
-            e.target.onerror = null; // Remove the error handler after first execution
-            e.target.src = productObj.category.image; // category image does not need "cleaning"
+            e.target.onerror = null; // Remove the error handler after first execution, otherwise infinite loop
+            if (e.target.src === product.category.image) {
+              // If the category image ALSO fails, show a our local fallback image (mock-img.webp)
+              e.target.src = "/mock-img.webp"; // Replace with the path to your local fallback image
+            } else {
+              // Attempt to load the category image after product image fails
+              e.target.src = product.category.image;
+            }
           }}
         />{" "}
       </Link>

@@ -25,7 +25,7 @@ export default function ProductCollectionSection({
                 title={productObj.title}
                 price={productObj.price}
                 imgSrc={productObj.images[0]}
-                productObj={productObj}
+                product={productObj}
               />
             );
           })}

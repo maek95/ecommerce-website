@@ -42,9 +42,14 @@ export default function ProductPage() {
                 src={product.images[0]}
                 alt="Failed loading image"
                 onError={(e) => {
-                  // Prevent infinite loops if the fallback image fails too
-                  e.target.onerror = null; // Remove the error handler after first execution
-                  e.target.src = product.category.image;
+                  e.target.onerror = null; // Remove the error handler after first execution, otherwise infinite loop
+                  if (e.target.src === product.category.image) {
+                    // If the category image ALSO fails, show a our local fallback image (mock-img.webp)
+                    e.target.src = "/mock-img.webp"; // Replace with the path to your local fallback image
+                  } else {
+                    // Attempt to load the category image after product image fails
+                    e.target.src = product.category.image;
+                  }
                 }}
               />
             )}
