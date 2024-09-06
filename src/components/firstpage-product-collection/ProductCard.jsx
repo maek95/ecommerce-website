@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useContext, useState } from "react";
 import { useRouter } from "next/navigation";
 import { FaShoppingBasket } from "react-icons/fa"; // Re-added the missing import
+import PopUpCard from "../PopUpCard";
 
 export default function ProductCard({
   title = "No Title",
@@ -36,10 +37,7 @@ export default function ProductCard({
     setPopupVisible(true);
   };
 
-  const goToProductPage = () => {
-    router.push(`/product-page/${productId}`); // Navigate to the product page
-  };
-
+ 
   return (
     <div className="h-full w-36 flex-shrink-0 flex flex-col gap-4">
       <div onClick={handleProductClick} className="h-3/4 w-full cursor-pointer">
@@ -66,26 +64,7 @@ export default function ProductCard({
       </div>
 
       {/* PopUpCard rendered conditionally */}
-      {isPopupVisible && (
-        <div
-          className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm flex items-center justify-center z-50"
-          onClick={goToProductPage} // Clicking outside will go to the product page
-        >
-          <div
-            className="bg-white p-6 rounded-lg shadow-lg"
-            onClick={(e) => e.stopPropagation()} // Prevent closing when clicking inside
-          >
-            <h2 className="text-lg font-bold">{title}</h2>
-            <p>Product details go here...</p>
-            <button
-              onClick={goToProductPage} // Redirects to the product page
-              className="mt-4 bg-blue-500 text-white px-4 py-2 rounded"
-            >
-              Go to Product Page
-            </button>
-          </div>
-        </div>
-      )}
+      {isPopupVisible && <PopUpCard product={productObj} setPopupVisible={setPopupVisible}/>}
     </div>
   );
 }
