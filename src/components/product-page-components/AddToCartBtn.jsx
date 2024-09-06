@@ -22,7 +22,7 @@ export default function AddToCartBtn({ product }) {
         added ? "bg-green-600" : "bg-blue-500"
       } rounded hover:bg-blue-700`}
     >
-      {added ? "Added to Basket" : "Add to Basket"}
+      {added ? "Added to Cart" : "Add to Cart"}
     </button>
   );
 }

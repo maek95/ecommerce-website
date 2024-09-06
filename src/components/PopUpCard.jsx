@@ -1,9 +1,10 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
-export default function PopUpCard() {
-  const [isPopupVisible, setPopupVisible] = useState(false);
+export default function PopUpCard({ product, setPopupVisible }) {
+  const router = useRouter();
 
   const handleBuyClick = () => {
     setPopupVisible(true);
@@ -12,36 +13,36 @@ export default function PopUpCard() {
   const closePopup = () => {
     setPopupVisible(false);
   };
+  const goToProductPage = () => {
+    router.push(`/product-page/${product.id}`); // Navigate to the product page
+  };
 
   return (
     <div>
-      <button
-        onClick={handleBuyClick}
-        className="bg-blue-500 text-white px-4 py-2 rounded"
+      <div
+        className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm flex items-center justify-center z-50"
+        onClick={closePopup}
       >
-        Buy
-      </button>
-
-      {isPopupVisible && (
         <div
-          className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm flex items-center justify-center z-50"
-          onClick={closePopup}
+          className="bg-white p-6 rounded-lg shadow-lg transform scale-0 animate-grow"
+          onClick={(e) => e.stopPropagation()}
         >
-          <div
-            className="bg-white p-6 rounded-lg shadow-lg transform scale-0 animate-grow"
-            onClick={(e) => e.stopPropagation()}
+          <h2 className="text-lg font-bold">{product.title}</h2>
+          <p>{product.description}</p>
+          <button
+            onClick={closePopup}
+            className="mt-4  bg-blue-500 hover:bg-blue-400 text-white px-4 py-2 rounded"
           >
-            <h2 className="text-lg font-bold">Product Title</h2>
-            <p>Product details go here...</p>
-            <button
-              onClick={closePopup}
-              className="mt-4 bg-red-500 text-white px-4 py-2 rounded"
-            >
-              Close
-            </button>
-          </div>
+            Close
+          </button>
+          <button
+            className="mt-4 bg-blue-500 ml-1 hover:bg-blue-400 text-white px-4 pl-6 py-2 rounded"
+            onClick={goToProductPage}
+          >
+            Go to Product Page
+          </button>
         </div>
-      )}
+      </div>
     </div>
   );
 }

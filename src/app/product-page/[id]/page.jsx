@@ -32,6 +32,12 @@ export default function ProductPage() {
       <Navbar />
       <main className=" flex flex-col pl-4 pr-4">
         <div>
+          <button
+            onClick={handleNavigation}
+            className=" underline my-4 flex justify-center border-none bg-transparent hover:cursor-pointer "
+          >
+            Tillbaka
+          </button>
           <h1 className="font-bebas">product page</h1>
 
           <header className="h-96 max-w-full object-cover">

@@ -10,7 +10,7 @@ export async function getAllProducts() {
 
     return data; // return fetched data
   } catch (error) {
-    console.error("Failed to fetch mockdata:", error);
+    console.error("Failed to fetch data:", error);
     return []; // empty array if failed fetch
   }
 }
