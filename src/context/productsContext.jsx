@@ -25,14 +25,6 @@ export function ProductsProvider({ children }) {
   }, []);
 
   useEffect(() => {
-    // hämta varukorgen från localStorage
-    const storedCart = localStorage.getItem("cart");
-    if (storedCart) {
-      setCartProductsArr(JSON.parse(storedCart));
-    }
-  }, []);
-
-  useEffect(() => {
     if (allProductsArr.length > 0) {
       const productCategories = groupProductsByCategory(allProductsArr);
       setCategoryProductsArr(productCategories);

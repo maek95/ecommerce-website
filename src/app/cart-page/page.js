@@ -93,7 +93,7 @@ export default function CartPage() {
             ) : (
               <div className="flex flex-col">
                 <span>Shipping: 59&nbsp;kr</span>
-                <span className="pt-8 text-lg">Total: {sum}</span>
+                <span className="pt-8 text-lg">Total: {sum}&nbsp;kr</span>
               </div>
             )}
           </div>
