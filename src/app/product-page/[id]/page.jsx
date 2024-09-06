@@ -9,19 +9,18 @@ import { ProductsContext } from "@/context/productsContext";
 import { useContext } from "react";
 
 export default function ProductPage() {
-  const params = useParams();
-  const productId = params.id;
-  const router = useRouter();
+  const params = useParams(); // Nextjs använder useParams för att läsa av [id] i filnamnet. I React Router defienrar man dessa parametrar i en "route"-fil.
+  const productId = params.id; // Läser av id:et från params. 
+  const router = useRouter(); // Nextjs använder useRouter medan React router använder useNavigation, ungefär samma grej.
 
-  const { allProductsArr } = useContext(ProductsContext);
+  const { allProductsArr } = useContext(ProductsContext); // hämtar arrayen(AllProductsArr) från ProductsContext.
   const handleNavigation = () => {
     router.back();
   };
 
   const product = allProductsArr.find(
-    (productObj) => productObj.id == productId
+    (productObj) => productObj.id == productId // Letar igenom arrayen efter rätt produkt som matchar id:et. 
   );
-  console.log(product);
 
   if (!product) {
     return <h1>Loading Page...</h1>;
@@ -36,7 +35,7 @@ export default function ProductPage() {
             onClick={handleNavigation}
             className=" underline my-4 flex justify-center border-none bg-transparent hover:cursor-pointer "
           >
-            Tillbaka
+            Back
           </button>
           <h1 className="font-bebas">product page</h1>
 
@@ -59,17 +58,17 @@ export default function ProductPage() {
                 }}
               />
             )}
-            {/* product image */}
+            
           </header>
 
           <div>
             {/* Product name */}
             <h2 className="font-normal">{product.title}</h2>
-            {/* Product name */}
+            
 
             {/* Product pris */}
             <h2>{product.price}kr</h2>
-            {/* Product pris */}
+            
 
             <div>
               <AddToCartBtn product={product} />
@@ -82,7 +81,7 @@ export default function ProductPage() {
             <div>
               <ProdDescription description={product.description} />
             </div>
-            {/* Description */}
+            
           </div>
         </div>
       </main>

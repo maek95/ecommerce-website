@@ -1,14 +1,9 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useState } from "react";
 
 export default function PopUpCard({ product, setPopupVisible }) {
   const router = useRouter();
-
-  const handleBuyClick = () => {
-    setPopupVisible(true);
-  };
 
   const closePopup = () => {
     setPopupVisible(false);
@@ -21,11 +16,11 @@ export default function PopUpCard({ product, setPopupVisible }) {
     <div>
       <div
         className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm flex items-center justify-center z-50"
-        onClick={closePopup}
+        onClick={closePopup} // kan klicka utanför popupen för att stänga den
       >
         <div
           className="bg-white p-6 rounded-lg shadow-lg transform scale-0 animate-grow"
-          onClick={(e) => e.stopPropagation()}
+          onClick={(e) => e.stopPropagation()} // e.StopPropagation gör det möjligt att klicka i popup-rutan utan att den försvinner(closePopup ovan)
         >
           <h2 className="text-lg font-bold">{product.title}</h2>
           <p>{product.description}</p>

@@ -31,14 +31,14 @@ export function ProductsProvider({ children }) {
     if (storedCart) {
       setCartProductsArr(JSON.parse(storedCart));
     }
-  }, []);
+  }, []); // life cycle method: runs once every time the component mounts
 
   useEffect(() => {
     if (allProductsArr.length > 0) {
       const productCategories = groupProductsByCategory(allProductsArr);
       setCategoryProductsArr(productCategories);
     }
-  }, [allProductsArr]);
+  }, [allProductsArr]); // life cycle method: runs every time when allProductsArr is updated
 
   const addToCart = (product) => {
     setCartProductsArr((prevCartProducts) => {

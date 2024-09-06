@@ -16,8 +16,7 @@ export default function ProductCard({
   const [isCartClicked, setIsCartClicked] = useState(false);
   const [isPopupVisible, setPopupVisible] = useState(false);
   const { addToCart } = useContext(ProductsContext);
-  const router = useRouter(); // Corrected import
-
+  
   if (!productId) {
     return (
       <div className="h-full w-36 flex-shrink-0 flex flex-col gap-4">
