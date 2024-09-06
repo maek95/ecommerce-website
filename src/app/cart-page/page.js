@@ -5,12 +5,20 @@ import { ProductsContext } from "@/context/productsContext";
 import { RxCross2 } from "react-icons/rx";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import Link from "next/link";
 
 export default function CartPage() {
   const { cartProductsArr, removeFromCart } = useContext(ProductsContext);
 
   if (cartProductsArr.length === 0) {
-    return <div>Your cart is empty</div>;
+    return (
+      <div>
+        <Navbar />
+        <h2 className="px-8">Oh no! <br/> Your cart is empty.</h2>
+        <Link href="/" className="px-8">Shop here</Link>
+        <Footer />
+      </div>
+    );
   }
 
   // Beräknar antalet varor i kundkorgen
