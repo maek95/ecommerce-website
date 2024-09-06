@@ -10,17 +10,6 @@ import Link from "next/link";
 export default function CartPage() {
   const { cartProductsArr, removeFromCart } = useContext(ProductsContext);
 
-  if (cartProductsArr.length === 0) {
-    return (
-      <div>
-        <Navbar />
-        <h2 className="px-8">Oh no! <br/> Your cart is empty.</h2>
-        <Link href="/" className="px-8">Shop here</Link>
-        <Footer />
-      </div>
-    );
-  }
-
   // Beräknar antalet varor i kundkorgen
   const totalItems = cartProductsArr.length;
 
@@ -35,9 +24,26 @@ export default function CartPage() {
   const shippingCost = subTotal > 450 ? 0 : 59;
   const sum = subTotal + shippingCost; // Totalpris inkl. frakt
 
+  if (cartProductsArr.length === 0) {
+    return (
+      <div>
+        {/* Passed totalItems prop to Navbar */}
+        <Navbar totalItems={totalItems} />
+        <h2 className="px-8">
+          Oh no! <br /> Your cart is empty.
+        </h2>
+        <Link href="/" className="px-8">
+          Shop here
+        </Link>
+        <Footer />
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen w-full">
-      <Navbar />
+      {/* Passed totalItems prop to Navbar */}
+      <Navbar totalItems={totalItems} />
       <main className="px-8 box-border pt-8 flex flex-col w-full gap-4">
         <h1 className="text-blue-700 text-xl cart-title">CART</h1>
         <ul className="p-0">
@@ -49,14 +55,9 @@ export default function CartPage() {
                   alt={product.title}
                   className="w-24 h-24 object-cover mr-4"
                   onError={(e) => {
-                    e.target.onerror = null; // Remove the error handler after first execution, otherwise infinite loop
-                    if (e.target.src === product.category.image) {
-                      // If the category image ALSO fails, show a our local fallback image (mock-img.webp)
-                      e.target.src = "/mock-img.webp"; // Replace with the path to your local fallback image
-                    } else {
-                      // Attempt to load the category image after product image fails
-                      e.target.src = product.category.image;
-                    }
+                    // Prevent infinite loops if the fallback image fails too
+                    e.target.onerror = null; // Remove the error handler after first execution
+                    e.target.src = product.category.image; // category image does not need "cleaning"
                   }}
                 />
                 <div className="flex justify-between w-full">

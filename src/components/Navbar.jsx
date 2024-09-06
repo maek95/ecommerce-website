@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import Link from "next/link";
 import { RxHamburgerMenu } from "react-icons/rx";
 import {
@@ -10,10 +10,15 @@ import {
   FiHeart,
   FiShoppingBag,
 } from "react-icons/fi";
+import { ProductsContext } from "@/context/productsContext"; // Import the context
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [isPopupVisible, setPopupVisible] = useState(false);
+
+  // Get cartProductsArr from context
+  const { cartProductsArr } = useContext(ProductsContext);
+  const totalItems = cartProductsArr.length; // Calculate total items from context
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -53,9 +58,27 @@ export default function Navbar() {
           <FiMapPin style={iconStyles} />
           <FiUser style={iconStyles} />
           <FiHeart style={iconStyles} />
-          <Link href={"/cart-page"}>
-            <FiShoppingBag style={iconStyles} />
-          </Link>
+          <div style={{ position: "relative" }}>
+            <Link href={"/cart-page"}>
+              <FiShoppingBag style={iconStyles} />
+            </Link>
+            {totalItems > 0 && (
+              <span
+                style={{
+                  position: "absolute",
+                  top: "-10px",
+                  right: "-10px",
+                  backgroundColor: "red",
+                  color: "white",
+                  borderRadius: "50%",
+                  padding: "2px 6px",
+                  fontSize: "0.8rem",
+                }}
+              >
+                {totalItems}
+              </span>
+            )}
+          </div>
         </div>
 
         {/* Burger Menu Content */}
