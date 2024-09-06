@@ -9,7 +9,6 @@ export function ProductsProvider({ children }) {
   const [cartProductsArr, setCartProductsArr] = useState([]);
   const [categoryProductsArr, setCategoryProductsArr] = useState([]);
 
-
   useEffect(() => {
     async function fetchAllProducts() {
       const fetchedProducts = await getAllProducts(); // getAllProducts() function in productsFetches.jsx (api folder)
@@ -31,20 +30,18 @@ export function ProductsProvider({ children }) {
     if (storedCart) {
       setCartProductsArr(JSON.parse(storedCart));
     }
-
-  }, [])
+  }, []);
 
   useEffect(() => {
-
     if (allProductsArr.length > 0) {
       const productCategories = groupProductsByCategory(allProductsArr);
       setCategoryProductsArr(productCategories);
     }
-
-  }, [allProductsArr])
+  }, [allProductsArr]);
 
   const addToCart = (product) => {
     setCartProductsArr((prevCartProducts) => {
+      // updatedCart är den uppdaterade listan
       const updatedCart = [...prevCartProducts, product];
       localStorage.setItem("cart", JSON.stringify(updatedCart));
       return updatedCart;
@@ -72,10 +69,15 @@ export function ProductsProvider({ children }) {
     console.log("context categoryProductsArr: ", categoryProductsArr);
   }, [categoryProductsArr]);
 
-
   return (
     <ProductsContext.Provider
-      value={{ allProductsArr, cartProductsArr, addToCart, removeFromCart, categoryProductsArr }}
+      value={{
+        allProductsArr,
+        cartProductsArr,
+        addToCart,
+        removeFromCart,
+        categoryProductsArr,
+      }}
     >
       {children}
     </ProductsContext.Provider>
@@ -100,28 +102,27 @@ function cleanImageUrl(url) {
 function groupProductsByCategory(products) {
   const productCategories = [];
 
-  products.forEach(product => {
-
+  products.forEach((product) => {
     const categoryId = product.category.id;
     const categoryName = product.category.name;
 
-    let category = productCategories.find(category => category.categoryId == categoryId);
- 
+    let category = productCategories.find(
+      (category) => category.categoryId == categoryId
+    );
+
     if (!category) {
       // if category doesnt exist we will create it
-      category = { 
+      category = {
         categoryId,
         categoryName,
-        products: [] // initalize with an empty array
-      }
+        products: [], // initalize with an empty array
+      };
       productCategories.push(category); // push new category to groupedProducts array
     }
 
-    // now that the category exists we can push in the product 
-    category.products.push(product)
+    // now that the category exists we can push in the product
+    category.products.push(product);
   });
 
   return productCategories;
-  
 }
-

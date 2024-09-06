@@ -13,6 +13,11 @@
   border-bottom: 1px solid rgb(226, 226, 226);
 }
 
+.shipping-bar {
+  border: 2px solid white;
+  border-radius: 50px;
+}
+
 /* keyframes to control the intermediate steps in a CSS animation sequence...!
 Kinda unnecessary now that we only have a start and finish step, but useful if we wouldve had multiple steps.
 */

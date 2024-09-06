@@ -16,10 +16,16 @@ export default function CartPage() {
   // Beräknar antalet varor i kundkorgen
   const totalItems = cartProductsArr.length;
 
-  // Beräknar den totala summan
+  // Beräknar summan av varorna = subTotal
   const subTotal = cartProductsArr.reduce((total, product) => {
     return total + product.price;
+    // startvärde för total = 0
   }, 0);
+
+  // Beräknar totala summan = sum
+  // fraktritt över 450kr, annars läggs 59kr i frakt på.
+  const shippingCost = subTotal > 450 ? 0 : 59;
+  const sum = subTotal + shippingCost; // Totalpris inkl. frakt
 
   return (
     <div className="min-h-screen w-full">
@@ -65,9 +71,23 @@ export default function CartPage() {
           <h2 className="text-base">Order summary</h2>
           <div className="flex flex-col bg-gray-100 py-4 px-2">
             <span>{totalItems} items</span>
-            <span>Subtotal: {subTotal}&nbsp;kr</span>
-          </div>
-          <div>
+            <span>Items: {subTotal}&nbsp;kr</span>
+            {subTotal > 450 ? (
+              <div className="flex flex-col">
+                <p className="bg-blue-600 h-2 shipping-bar"></p>
+                <span>
+                  You have reached{" "}
+                  <span className="font-bold">free shipping</span>
+                </span>
+                <span>Shipping: 0&nbsp;kr</span>
+                <span className="pt-8 text-lg">Total: {sum}&nbsp;kr</span>
+              </div>
+            ) : (
+              <div className="flex flex-col">
+                <span>Shipping: 59&nbsp;kr</span>
+                <span className="pt-8 text-lg">Total: {sum}</span>
+              </div>
+            )}
           </div>
         </div>
       </main>
