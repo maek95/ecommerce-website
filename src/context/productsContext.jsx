@@ -13,6 +13,7 @@ export function ProductsProvider({ children }) {
     async function fetchAllProducts() {
       const fetchedProducts = await getAllProducts(); // getAllProducts() function in productsFetches.jsx (api folder)
 
+      // Filtrerar ut datan (ta bort onödiga tecken osv)
       const cleanedProducts = fetchedProducts.map((product) => ({
         ...product,
         images: product.images.map(cleanImageUrl), // Remove unwanted characters surrounding the image source link (this api surround the image link with weird characters...)
