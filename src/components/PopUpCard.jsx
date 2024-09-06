@@ -31,17 +31,16 @@ export default function PopUpCard({ product, setPopupVisible }) {
           <p>{product.description}</p>
           <button
             onClick={closePopup}
-            className="mt-4 bg-red-500 text-white px-4 py-2 rounded"
+            className="mt-4  bg-blue-500 hover:bg-blue-400 text-white px-4 py-2 rounded"
           >
             Close
           </button>
           <button
-  className="mt-4 bg-red-500 text-white px-4 pl-6 py-2 rounded"
-  onClick={goToProductPage}
->
-  Go to Product Page
-</button>
-
+            className="mt-4 bg-blue-500 ml-1 hover:bg-blue-400 text-white px-4 pl-6 py-2 rounded"
+            onClick={goToProductPage}
+          >
+            Go to Product Page
+          </button>
         </div>
       </div>
     </div>
